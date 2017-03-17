@@ -37,6 +37,8 @@
         android:layout_width="160dp"
         android:layout_height="80dp"
         app:layout_alignSelf="flex_end"
+        android:text="@{cloth.name}"
+        android:onClick="@{() -> mainViewModel.showClothName(cloth)}"
         />
 </com.google.android.flexbox.FlexboxLayout>
     </layout>
