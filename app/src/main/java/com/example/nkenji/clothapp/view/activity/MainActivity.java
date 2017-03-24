@@ -16,7 +16,7 @@ import com.example.nkenji.clothapp.viewmodel.MainViewModel;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    
+
     private ClothRecyclerViewAdapter mAdapter = null;
     private ActivityMainBinding mBinding = null;
     private List<Cloth> mClothList = null;
