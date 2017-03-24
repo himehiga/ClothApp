@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ClothApp</string>
     <string name="action_settings">Settings</string>
+    <string name="search_shirts">Shirts</string>
+    <string name="search_dress">Dress</string>
+    <string name="search_pants">Pants</string>
 </resources>

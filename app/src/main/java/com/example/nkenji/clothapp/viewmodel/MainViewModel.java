@@ -1,15 +1,33 @@
 package com.example.nkenji.clothapp.viewmodel;
 
-import android.util.Log;
-import android.view.View;
+import com.example.nkenji.clothapp.model.SampleClothData;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.Flowable;
 
 public class MainViewModel {
 
-    public void onClickCloth(View view) {
-        Log.e("Tag","Error");
+    public String firstName;
+    private int count;
+
+    private List<Cloth> mMyClothList = new ArrayList<>();
+
+    public MainViewModel(){
+
     }
 
-    public void showClothName(Cloth cloth) {
-        System.out.println(cloth.getName());
+    public List<Cloth> getDB(){
+      return new SampleClothData().getDB();
+    }
+
+    public List<Cloth> getSelectedItems(Cloth.Genre genre) {
+
+        //ListをRxでfilterした結果を返す
+        List<Cloth> clothItems = new SampleClothData().getDB();
+        return Flowable.fromIterable(clothItems)
+                .filter(cloth -> cloth.getGenre() == genre)
+                .toList().blockingGet();
     }
 }

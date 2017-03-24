@@ -3,8 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.nkenji.clothapp.view.activity.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/search_dress"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/search_dress"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/search_shirts"
+        android:orderInCategory="100"
+        android:title="@string/search_shirts"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/search_pants"
+        android:orderInCategory="100"
+        android:title="@string/search_pants"
         app:showAsAction="never" />
 </menu>
