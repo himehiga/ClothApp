@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Theme & Accent -->
+    <color name="theme">@color/purple</color>
+    <color name="dark_theme">@color/dark_purple</color>
+    <color name="accent">@color/red</color>
+
+    <!-- Navigation -->
+    <color name="nav_background">@color/white</color>
+    <color name="nav_active">@color/theme</color>
+    <color name="nav_inactive">@color/grey400</color>
 </resources>

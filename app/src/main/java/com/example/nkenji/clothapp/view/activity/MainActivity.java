@@ -3,7 +3,7 @@ package com.example.nkenji.clothapp.view.activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mBinding.recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
 
         mMainViewModel = new MainViewModel();
 
@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
             mClothList = mMainViewModel.getSelectedItems(Cloth.Genre.DRESS);
             mAdapter.resetRecyclerViewItems(mClothList);
             mAdapter.notifyDataSetChanged();
-
             return true;
         }
         if (id == R.id.search_pants) {

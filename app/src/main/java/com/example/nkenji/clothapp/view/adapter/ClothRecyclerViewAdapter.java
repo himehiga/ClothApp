@@ -3,10 +3,13 @@ package com.example.nkenji.clothapp.view.adapter;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nkenji.clothapp.BR;
@@ -54,7 +57,8 @@ public class ClothRecyclerViewAdapter extends RecyclerView.Adapter<ClothRecycler
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_item, parent, false);
         view.setOnClickListener((View clickedView) -> {
-            Toast.makeText(mContext,"Test",Toast.LENGTH_SHORT).show();
+            CardView cardView =  (CardView)((LinearLayout) clickedView).getChildAt(0);
+            Toast.makeText(mContext,((TextView)cardView.getChildAt(0)).getText(),Toast.LENGTH_SHORT).show();
         });
         return new ItemViewHolder(view);
     }
