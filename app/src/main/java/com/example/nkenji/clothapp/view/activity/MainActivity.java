@@ -15,6 +15,12 @@ import com.example.nkenji.clothapp.viewmodel.MainViewModel;
 
 import java.util.List;
 
+//TODO
+//自前サーバでサンプルデータを返すAPI
+//RxとRetrofitによる非同期通信
+//CardUI
+//RealmでDB保存
+
 public class MainActivity extends AppCompatActivity {
 
     private ClothRecyclerViewAdapter mAdapter = null;
