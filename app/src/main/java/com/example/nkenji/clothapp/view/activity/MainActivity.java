@@ -2,44 +2,51 @@ package com.example.nkenji.clothapp.view.activity;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.nkenji.clothapp.R;
 import com.example.nkenji.clothapp.databinding.ActivityMainBinding;
+import com.example.nkenji.clothapp.view.adapter.ClothRecyclerViewAdapter;
 import com.example.nkenji.clothapp.viewmodel.Cloth;
 import com.example.nkenji.clothapp.viewmodel.MainViewModel;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+    
+    private ClothRecyclerViewAdapter mAdapter = null;
+    private ActivityMainBinding mBinding = null;
+    private List<Cloth> mClothList = null;
+    private MainViewModel mMainViewModel = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //ContentMainBinding contentBinding = DataBindingUtil.setContentView(this,R.layout.content_main);
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        Cloth cloth = new Cloth("Tshirts");
-        binding.setCloth(cloth);
-        //contentBinding.setCloth(cloth);
-        MainViewModel mainViewModel = new MainViewModel();
-        binding.setMainViewModel(mainViewModel);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        mBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mMainViewModel = new MainViewModel();
+
+        mClothList = mMainViewModel.getDB();
+
+        setSupportActionBar(mBinding.toolbar);
+
+        mClothList = mMainViewModel.getDB();
+        mAdapter = new ClothRecyclerViewAdapter(this, mClothList);
+        mBinding.recyclerView.setAdapter(mAdapter);
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 
     @Override
@@ -57,7 +64,23 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.search_dress) {
+            mClothList = mMainViewModel.getSelectedItems(Cloth.Genre.DRESS);
+            mAdapter.resetRecyclerViewItems(mClothList);
+            mAdapter.notifyDataSetChanged();
+
+            return true;
+        }
+        if (id == R.id.search_pants) {
+            mClothList = mMainViewModel.getSelectedItems(Cloth.Genre.PANTS);
+            mAdapter.resetRecyclerViewItems(mClothList);
+            mAdapter.notifyDataSetChanged();
+            return true;
+        }
+        if (id == R.id.search_shirts) {
+            mClothList = mMainViewModel.getSelectedItems(Cloth.Genre.SHIRT);
+            mAdapter.resetRecyclerViewItems(mClothList);
+            mAdapter.notifyDataSetChanged();
             return true;
         }
 
